@@ -147,6 +147,7 @@ final class EntityMetadataFlags{
 	public const CAN_USE_VERTICAL_MOVEMENT_ACTION = 125;
 	public const ROTATION_LOCKED_TO_VEHICLE = 126;
 	public const USES_LEGACY_FRICTION = 127;
+	public const NOT_PICKABLE_FROM_INSIDE = 128;
 
-	public const NUMBER_OF_FLAGS = 128;
+	public const NUMBER_OF_FLAGS = 129;
 }

@@ -33,6 +33,7 @@ final class PrimitiveShapeTextPayload extends PrimitiveShapePayload{
 		private bool $depthTest,
 		private bool $showBackface,
 		private bool $showTextBackface,
+		private ?float $lineHeightOverride = null,
 	){}
 
 	public function getText() : string{ return $this->text; }
@@ -47,6 +48,8 @@ final class PrimitiveShapeTextPayload extends PrimitiveShapePayload{
 
 	public function hasShowTextBackface() : bool{ return $this->showTextBackface; }
 
+	public function getLineHeightOverride() : ?float{ return $this->lineHeightOverride; }
+
 	public static function read(ByteBufferReader $in) : self{
 		$text = CommonTypes::getString($in);
 		$useRotation = CommonTypes::getBool($in);
@@ -54,8 +57,9 @@ final class PrimitiveShapeTextPayload extends PrimitiveShapePayload{
 		$depthTest = CommonTypes::getBool($in);
 		$showBackface = CommonTypes::getBool($in);
 		$showTextBackface = CommonTypes::getBool($in);
+		$lineHeightOverride = CommonTypes::readOptional($in, LE::readFloat(...));
 
-		return new self($text, $useRotation, $backgroundColor, $depthTest, $showBackface, $showTextBackface,);
+		return new self($text, $useRotation, $backgroundColor, $depthTest, $showBackface, $showTextBackface, $lineHeightOverride);
 	}
 
 	public function write(ByteBufferWriter $out) : void{
@@ -65,5 +69,6 @@ final class PrimitiveShapeTextPayload extends PrimitiveShapePayload{
 		CommonTypes::putBool($out, $this->depthTest);
 		CommonTypes::putBool($out, $this->showBackface);
 		CommonTypes::putBool($out, $this->showTextBackface);
+		CommonTypes::writeOptional($out, $this->lineHeightOverride, LE::writeFloat(...));
 	}
 }

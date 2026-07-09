@@ -119,4 +119,7 @@ final class ParticleIds{
 	public const GREEN_FLAME = 98;
 	public const PAUSE_MOB_GROWTH = 99;
 	public const RESET_MOB_GROWTH = 100;
+	public const ORANGE_POPLAR_LEAVES = 101;
+	public const RED_POPLAR_LEAVES = 102;
+	public const YELLOW_POPLAR_LEAVES = 103;
 }
